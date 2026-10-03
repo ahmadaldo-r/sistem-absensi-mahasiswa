@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistem Absensi Mahasiswa sederhana berbasis HTML, CSS, dan JavaScript.">
+  <title>Student Attendance System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Attendance home">
+        <span class="brand-mark">A</span>
+        <span>Attend<span class="brand-light">ance</span><small>STUDENT SYSTEM</small></span>
+      </a>
+      <div class="side-label">MENU UTAMA</div>
+      <a class="nav-item active" href="#dashboard"><span class="nav-icon">▦</span> Dashboard</a>
+      <a class="nav-item" href="#attendance"><span class="nav-icon">☷</span> Data Absensi</a>
+      <div class="sidebar-bottom">
+        <div class="side-note"><span class="note-icon">✦</span><p>Catat kehadiran dengan mudah dan teratur.</p></div>
+        <div class="profile"><div class="avatar">SK</div><div><strong>Admin</strong><small>Sistem Absensi</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div><p class="eyebrow">STUDENT MANAGEMENT</p><h1>Dashboard Absensi</h1><p class="subheading">Kelola dan pantau kehadiran mahasiswa.</p></div>
+        <div class="today-chip"><span class="calendar-icon">▣</span><span id="todayLabel">Memuat tanggal...</span></div>
+      </header>
+
+      <section class="stats-grid" aria-label="Ringkasan absensi">
+        <article class="stat-card"><div class="stat-top"><span>Total Data</span><span class="stat-icon purple">▤</span></div><strong id="totalCount">0</strong><small>Catatan absensi tersimpan</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Hadir</span><span class="stat-icon green">✓</span></div><strong id="presentCount">0</strong><small>Mahasiswa hadir</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Izin & Sakit</span><span class="stat-icon orange">◷</span></div><strong id="excusedCount">0</strong><small>Memiliki keterangan</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Alpa</span><span class="stat-icon red">!</span></div><strong id="absentCount">0</strong><small>Tanpa keterangan</small></article>
+      </section>
+
+      <section class="content-grid" id="attendance">
+        <article class="panel form-panel">
+          <div class="panel-heading"><div><h2>Tambah Absensi</h2><p>Masukkan data kehadiran mahasiswa.</p></div><span class="heading-icon">＋</span></div>
+          <form id="attendanceForm">
+            <label for="studentName">Nama Mahasiswa</label>
+            <input id="studentName" type="text" placeholder="Contoh: Ahmad Rizky" maxlength="70" required>
+            <label for="studentNim">Nomor Induk Mahasiswa (NIM)</label>
+            <input id="studentNim" type="text" placeholder="Contoh: 24010001" maxlength="30" required>
+            <div class="form-row">
+              <div><label for="attendanceDate">Tanggal</label><input id="attendanceDate" type="date" required></div>
+              <div><label for="attendanceStatus">Status</label><select id="attendanceStatus" required><option value="Hadir">Hadir</option><option value="Izin">Izin</option><option value="Sakit">Sakit</option><option value="Alpa">Alpa</option></select></div>
+            </div>
+            <button class="primary-button" type="submit"><span>＋</span> Simpan Absensi</button>
+            <p class="form-message" id="formMessage" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-heading table-heading"><div><h2>Riwayat Absensi</h2><p>Daftar catatan kehadiran mahasiswa.</p></div><button class="export-button" id="exportBtn" type="button">⇩ <span>Ekspor CSV</span></button></div>
+          <div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Cari nama atau NIM..."></div><select id="filterStatus" aria-label="Filter status"><option value="">Semua Status</option><option>Hadir</option><option>Izin</option><option>Sakit</option><option>Alpa</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>MAHASISWA</th><th>TANGGAL</th><th>STATUS</th><th></th></tr></thead><tbody id="attendanceBody"></tbody></table>
+            <div class="empty-state" id="emptyState"><div class="empty-icon">☷</div><strong>Belum ada data absensi</strong><p>Tambahkan catatan melalui formulir di samping.</p></div>
+          </div>
+          <div class="table-footer"><span id="recordCount">Menampilkan 0 data</span><button class="clear-button" id="clearBtn" type="button">Hapus semua data</button></div>
+        </article>
+      </section>
+      <footer>Student Attendance System <span>•</span> Dibuat dengan HTML, CSS & JavaScript</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
